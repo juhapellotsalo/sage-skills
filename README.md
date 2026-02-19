@@ -55,6 +55,23 @@ Explores the current project's structure, tech stack, dependencies, configuratio
 
 Searches external sources — GitHub repos, web documentation, package registries. Uses `gh` CLI, WebSearch, and WebFetch. Returns a concise summary with findings and sources. Used by the dependency hook automatically, or on demand for any research task.
 
+### Making the agent use them
+
+Installing the agent files makes them *available*, but the main agent won't reliably use them unless explicitly instructed. Without instructions, it defaults to the built-in Explore agent or scans the codebase directly with Glob/Grep.
+
+Add the following to your project's `CLAUDE.md` (or `AGENTS.md`, or `~/.claude/CLAUDE.md` for global use):
+
+```markdown
+## Subagent Usage
+
+IMPORTANT: These rules OVERRIDE default subagent behavior.
+
+- ALWAYS use `sage-scout` (subagent_type: sage-scout) for codebase exploration instead of the built-in Explore agent. Do NOT scan the codebase manually with Glob/Grep when full project understanding is needed.
+- ALWAYS use `sage-search` (subagent_type: sage-search) for web searches, GitHub lookups, and documentation fetches. Do NOT use WebSearch or WebFetch directly in the main conversation.
+```
+
+The key is the override language — "ALWAYS", "Do NOT", and explicitly naming the subagent_type. Soft phrasing like "prefer using" gets ignored.
+
 ---
 
 ## Hooks
