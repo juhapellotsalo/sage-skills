@@ -14,9 +14,9 @@ Write **just enough for an agent to resume** — not documentation, not history.
 
 ## Instructions
 
-1. Analyze the current conversation
+1. Analyze the current conversation — this is the primary source of truth
 
-2. Check for uncommitted changes (`git status`). If there are any, ask the user whether to commit them before snapshotting.
+2. Check uncommitted changes (`git status`, `git diff`) as supporting context
 
 3. Extract and update each section of `SAGE-STATE.md` (project root) with **minimal viable context**:
 
